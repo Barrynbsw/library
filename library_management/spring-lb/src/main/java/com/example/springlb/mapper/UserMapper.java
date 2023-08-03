@@ -9,14 +9,12 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 @Mapper
 public interface UserMapper {
-    @Delete("delete from user where id = #{id}")
-    void delete(Integer id);
-
-    @Insert("INSERT INTO `user` ( `username`, `name`, `age`, `sex`, `phone`, address)" +
-            " VALUES ( #{username}, #{name}, #{age}, #{sex}, #{phone}, #{address})")
-    void insert(user u);
 
 //    @Select("select * from `user`")
     List<user> list();
     List<user> listByCondition(Pagerequest pagerequest);
+    void add(user u);
+    user getByid(String id);
+    void update(user user);
+    void delete(String id);
 }

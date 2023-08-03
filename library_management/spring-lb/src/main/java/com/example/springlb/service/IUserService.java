@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface IUserService {
     List<user> list();
-    void insert(user u);
-   void delete(Integer id) ;
    Object page(Pagerequest pagerequest);
+   void add(user user);
+   user getByid(String id);
+   void update(user user);
+    void delete(String id);
 }

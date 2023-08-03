@@ -35,6 +35,21 @@
             prop="address"
             label="地址">
         </el-table-column>
+
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+                type="primary"
+                size="mini"
+                @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-popconfirm
+                title="这一行内容确定删除吗？"
+                @confirm="handleDelete(scope.$index, scope.row)"
+            >
+              <el-button slot="reference" type="danger"  size="mini" style="margin-left: 10px">删除</el-button>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <div class="page">
@@ -73,10 +88,6 @@ export default {
   },
   methods: {
     load: function () {
-      //   fetch('http://localhost:9090/user/list').then(res => res.json()).then(res => {
-      //     console.log(res)
-      //     this.tableData = res
-      //   })
       request.get('/user/page',{params:this.params}).then(res => {
         this.tableData=res.data.list;
         this.total= res.data.total;
@@ -91,6 +102,22 @@ export default {
       this.params.pageNum=val;
       this.load();
     },
+    handleEdit(index, row) {
+     this.$router.push('/edituser?id='+row.id);
+      console.log(index, row);
+    },
+    handleDelete(index, row) {
+      request.delete("/user/delete", {
+        params: {
+          id: row.id
+        }
+      }).then(res =>{
+        if (res.code ==="200"){
+          this.load();
+          this.$notify.success("删除成功");
+        }
+        console.log(index, row);
+      })}
   }
 
 }

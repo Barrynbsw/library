@@ -3,7 +3,7 @@
     <el-row class="tac">
       <el-col :span="12" style="width: 200px">
         <el-menu
-            :default-active="home"
+            default-active="/"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -13,7 +13,7 @@
             router="true"
             default-openeds="['1']"
             >
-          <el-menu-item index="/home">
+          <el-menu-item index="/">
             <i class="el-icon-eleme"></i>首页
           </el-menu-item>
           <el-submenu index="1">
@@ -23,7 +23,7 @@
             </template>
             <el-menu-item-group>
               <template slot="title"><i class="el-icon-user" ></i>会员管理</template>
-              <el-menu-item index="1-1">会员添加</el-menu-item>
+              <el-menu-item index="adduser">会员添加</el-menu-item>
               <el-menu-item index="user">会员列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
