@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class Pagerequest extends Baserequest{
     private String name;
+    private String adminname;
     private String phone;
 }

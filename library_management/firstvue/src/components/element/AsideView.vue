@@ -26,8 +26,9 @@
               <el-menu-item index="adduser">会员添加</el-menu-item>
               <el-menu-item index="user">会员列表</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item-group title="管理员管理">
+              <el-menu-item index="addadmin">管理员添加</el-menu-item>
+              <el-menu-item index="admin">管理员列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
