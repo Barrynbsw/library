@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div id="m">
       <el-container>
-  <el-header>
-    <img src="@/assets\pic\logo.png"  style="width: 60px; position: relative; right: 10px;">
-    <span style="position:absolute;top:20px; margin-left: 10px;"> 巴里のLibraryManagement</span>
-  </el-header>
+            <el-header>
+   <div>
+     <HeaderView></HeaderView>
+   </div>
+          </el-header>
 
   <el-container>
     <el-aside width="200px">
@@ -22,24 +23,28 @@
   </el-container>
 </el-container>
     </div>
-   
-    
 </template>
 <script>
 import AsideView from './AsideView.vue';
+import HeaderView from './Header'
 export default {
 name:'ElementView',
 
 methods: {
+
      
 },
 components:{
-  AsideView
+  AsideView,
+  HeaderView
 }
 }
 </script>
 
 <style>
+#m{
+  background: url('../../assets/pic/bg2.dd39329b.svg');
+}
   .el-header{
     font-size: 20px;
     font-style: initial;

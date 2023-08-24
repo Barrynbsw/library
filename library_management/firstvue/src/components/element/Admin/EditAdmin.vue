@@ -30,7 +30,7 @@ export default {
         adminname:'',
         email:'',
         phone:'',
-        password:'',
+        password:'  ',
         id:''
       },
       params:{
