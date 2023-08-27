@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import request from "@/utils/request";
+
 import ValidCode from "@/components/element/Login/ValidCode";
 export default {
   name: "LoginView",
@@ -120,19 +120,12 @@ export default {
             this.$notify.error("两次密码输入不一致")
             return
           }
-          if(this.form.role == 1 && this.form.authorize != "2236")
-          {
-            this.$notify.error("请输入正确的注册码")
+
+            this.$notify.error("请输入正确的注册码")  //该功能暂未实现，所以最后都会显示输入正确的注册码
             return
-          }
-          request.post("user/register",this.form).then(res=>{
-            if(res.code == 0)
-            {
-              this.$notify.success("注册成功")
-              this.$router.push("/login")
-            }
-            else {this.$notify.error(res.msg)}
-          })
+
+
+
         }
       })
 

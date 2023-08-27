@@ -33,10 +33,18 @@ public class AdminController {
         return result.success(adminService.getByid(id));
     }
     @PutMapping("update")
-    public result update(@RequestBody admin admin){
+    public result update(admin admin){
         System.out.println(admin);
         adminService.update(admin);
         return result.success();
+    }
+    @PostMapping("/login")
+    public result login(@RequestBody  admin admin){
+      admin admin1= adminService.login(admin);
+        if(admin1!= null){
+            return result.success(admin1);
+        }
+        else return result.error();
     }
     @DeleteMapping("delete")
     public result delete(String id){

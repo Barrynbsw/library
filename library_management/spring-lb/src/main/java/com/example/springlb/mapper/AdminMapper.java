@@ -13,4 +13,5 @@ public interface AdminMapper {
     admin getByid(String id);
     void update(admin admin);
     void delete(String id);
+    admin login(admin admin);
 }

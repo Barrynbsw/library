@@ -11,11 +11,11 @@
     </div>
     <div style="width: 100px">
       <el-dropdown>
-  <span class="el-dropdown-link">
-    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+  <span class="el-dropdown-link" style="cursor: pointer">
+    {{admin.adminname}}<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click="exit">退出系统</el-dropdown-item>
+          <el-dropdown-item ><div @click="exit">退出系统</div></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -24,26 +24,25 @@
 
 <script>
 
-
+import Cookies from "js-cookie";
 export default {
   name: "HeaderView",
   props: ['user'],
   data(){
     return{
-      User:[],
+      admin:JSON.parse(Cookies.get('admin')),
       imgUrl:require("@/assets/pic/logo.png")
     }
   },
   created(){
-    // let userStr = sessionStorage.getItem("user")||"{}"
-    // this.User = JSON.parse(userStr)
+
   },
   methods:{
     exit(){
-      sessionStorage.removeItem("user")
-      this.$router.push("/login")
+      Cookies.remove('admin');
+      this.$router.push('/login')
 
-    }
+     }
   }
 
 }

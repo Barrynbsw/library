@@ -66,4 +66,6 @@ public class AdminService implements IAdminService {
     @Override
 
     public void delete(String id){adminMapper.delete(id);}
+    @Override
+    public admin login(admin admin){return adminMapper.login(admin);}
 }

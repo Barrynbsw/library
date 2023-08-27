@@ -1,9 +1,9 @@
 <template>
   <div  class="login-container"  >
     <el-form ref="form" :model="form"   :rules="rules" class="login-page">
-      <h2 class="title" style="margin-bottom: 20px;text-align: center">图书借阅与管理系统登陆</h2>
+      <h2 class="title" style="margin-bottom: 20px;text-align: center">图书管理系统登陆</h2>
       <el-form-item prop="username" >
-        <el-input v-model="form.username"  placeholder="用户名" clearable>
+        <el-input v-model="form.adminname"  placeholder="用户名" clearable>
           <template #prefix>
             <el-icon class="el-input__icon"><User /></el-icon>
           </template>
@@ -37,7 +37,7 @@
 <script>
 import request from "@/utils/request";
 import ValidCode from "@/components/element/Login/ValidCode";
-
+import Cookies from 'js-cookie'
 export default {
   name: "LoginView",
   components:{
@@ -46,9 +46,12 @@ export default {
   data() {
     return {
       validCode: '',//通过valicode获取的验证码
-      form: {},
+      form: {
+        adminname:'',
+        password:'',
+      },
       rules: {
-        username: [
+        adminname: [
           {
             required: true,
             message: '请输入用户名',
@@ -82,14 +85,13 @@ export default {
             this.$notify.error('验证码错误');
             return
           }
-
-          request.post("user/login", this.form).then(res => {
-            if (res.code == 0) {
+          request.post('/admin/login',this.form).then(res => {
+            if (res.code == "200") {
               this.$notify.success('登录成功');
-              sessionStorage.setItem("user",JSON.stringify(res.data))//缓存用户信息
+              Cookies.set('admin',JSON.stringify(res.data))
               this.$router.push("/")
             } else {
-              this.$notify.error(res.msg);
+              this.$notify.error('登录失败');
             }
           })
         }

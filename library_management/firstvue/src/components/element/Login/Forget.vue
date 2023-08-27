@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import request from "@/utils/request";
+
 
 export default {
   name: "ForgetView",
@@ -85,29 +85,6 @@ export default {
         this.$notify.error('两次密码输入不一致');
         return
       }
-      request.get("forget/getcode",{
-        params:{
-          username:this.form.username
-        }
-      }).then(res=>{
-        if (res.code == 0) {
-         this.$notify.success('验证码发送成功');
-          let me = this;
-          me.isDisabled = true;
-          let interval = window.setInterval(function() {
-            me.buttonName = '（' + me.time + '秒）后重新发送';
-            --me.time;
-            if(me.time < 0) {
-              me.buttonName = "重新发送";
-              me.time = 60;
-              me.isDisabled = false;
-              window.clearInterval(interval);
-            }
-          }, 1000);
-        } else {
-          this.$notify.error(res.msg);
-        }
-      })
     },
     register(){
       this.$refs['form'].validate((valid) => {
@@ -125,14 +102,8 @@ export default {
             this.$notify.error("两次密码输入不一致")
             return
           }
-          request.post("forget/register",this.form).then(res=>{
-            if(res.code == 0)
-            {
-              this.$notify.success("密码修改成功")
-              this.$router.push("/login")
-            }
-            else {this.$notify.error(res.msg)}
-          })
+          this.$notify.error("请填写正确的验证码")  //该功能暂未实现，所以最后都会显示输入正确的验证码
+          return;
         }
       })
 

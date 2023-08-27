@@ -25,10 +25,19 @@
                 adminname like concat('%',#{adminname},'%')
             </if>
             <if test="phone != null and phone !=''">
-                and phone like concat('%',#{phone},'%')
+                AND phone like concat('%',#{phone},'%')
             </if>
         </where>
         order by id asc
+    </select>
+    <select id="login" resultType="com.example.springlb.entity.admin">
+        SELECT
+            *
+        FROM
+            admin
+        WHERE
+            admin.adminname = #{adminname} AND
+            admin.password = #{password}
     </select>
     <update id="update">
         UPDATE `admin` SET `adminname` = #{adminname},  `email` = #{email}, `password` = #{password}, `phone` = #{phone} WHERE `id` = #{id};

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class result {
     private static final String SUCCESS_CODE ="200";
-    private static final String ERROR_CODE ="200";
+    private static final String ERROR_CODE ="0";
     private String code;
     private Object data;
     private String msg;

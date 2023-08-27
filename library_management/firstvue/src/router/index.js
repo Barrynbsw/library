@@ -1,16 +1,19 @@
 import VueRouter from "vue-router";
+import Vue from 'vue'
 import About from '../components/element/AboutView';
 import Home from'../components/element/HomeView';
 import User from "@/components/element/User/UserView";
 import AddUser from "@/components/element/User/AddUser";
 import EditUser from "@/components/element/User/EditUser";
-import Admin from "@/components/element/Admin/AdminView"
+import Admin from "@/components/element/Admin/AdminView";
 import AddAdmin from "@/components/element/Admin/AddAdmin";
 import EditAdmin from "@/components/element/Admin/EditAdmin";
 import Login from "@/components/element/Login/Login";
 import ElementView from "@/components/element/ElementView";
-export default new VueRouter({
-    routes:[
+import Cookies from "js-cookie";
+Vue.use(VueRouter)
+
+    const routes = [
         {
             path:'/login',
             component:Login
@@ -65,7 +68,20 @@ export default new VueRouter({
 
             ]
         },
-
     ]
-
+const router = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
+router.beforeEach((to, from, next) => {
+    if (to.path === '/login') return next()
+    const admin=Cookies.get('admin')
+    if (!admin) {
+
+        return next("/login")
+        }
+      next()
+})
+
+export default router
