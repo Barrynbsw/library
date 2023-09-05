@@ -8,7 +8,7 @@
 ### •	写到后面觉得图书管理系统没意思，就有部分功能未实现
 ## 主要技术
 ### •SpringBoot、Mybatis plus、MySQL、
-### •	Vue2、Vue-router,Elemenui，axios
+### •	Vue2、Vue-router,Elementui，axios
 ## 主要功能	
 ### •	登录、书籍管理、用户管理、管理员管理
 
