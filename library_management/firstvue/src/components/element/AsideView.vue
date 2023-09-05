@@ -42,7 +42,9 @@
             </el-menu-item-group>
 
 
+
           </el-submenu>
+          <el-menu-item index="/book"><i class="el-icon-notebook-1"></i>书籍管理</el-menu-item>
 
           <el-menu-item index="/about"><i class="el-icon-star-on"></i>关于我们</el-menu-item>
         </el-menu>

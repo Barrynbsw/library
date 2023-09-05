@@ -10,7 +10,10 @@ import AddAdmin from "@/components/element/Admin/AddAdmin";
 import EditAdmin from "@/components/element/Admin/EditAdmin";
 import Login from "@/components/element/Login/Login";
 import ElementView from "@/components/element/ElementView";
-import Cookies from "js-cookie";
+import Book from "@/components/element/Book/Book";
+import AddBook from "@/components/element/Book/AddBook";
+import EditBook from "@/components/element/Book/EditBook";
+ import Cookies from "js-cookie";
 Vue.use(VueRouter)
 
     const routes = [
@@ -28,6 +31,7 @@ Vue.use(VueRouter)
             name:'Register',
             component:()=> import("@/components/element/Login/Register")
         },
+
         {
             path:'/',
             component:ElementView,
@@ -36,6 +40,10 @@ Vue.use(VueRouter)
                 {
                     path:'about',
                     component:About
+                },
+                {
+                    path:'/book',
+                    component:Book
                 },
                 {
                     path:'home',
@@ -65,6 +73,15 @@ Vue.use(VueRouter)
                     path:'editadmin',
                     component:EditAdmin
                 },
+                {
+                    path:'/editbook',
+                   component: EditBook
+
+                },
+                {
+                    path:'/addbook',
+                  component: AddBook
+                },
 
             ]
         },
@@ -75,13 +92,12 @@ const router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') return next()
+    if (to.path === '/login'||to.path === '/forget'||to.path === '/register') return next()
     const admin=Cookies.get('admin')
     if (!admin) {
-
-        return next("/login")
-        }
-      next()
+    return next("/login")
+}
+next()
 })
 
 export default router

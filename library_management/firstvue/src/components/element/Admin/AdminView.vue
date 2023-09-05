@@ -98,6 +98,7 @@ export default {
       this.params.pageNum=val;
       this.load();
     },
+
     handleEdit(index, row) {
       this.$router.push('/editadmin?id='+row.id);
       console.log(index, row);
